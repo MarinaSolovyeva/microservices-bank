@@ -66,7 +66,7 @@
 				<version>3.4.2</version>
 				<configuration>
 					<to>
-						<image>solovieva/${project.artifactId}:s4</image>
+						<image>marinass/${project.artifactId}:s4</image>
 					</to>
 				</configuration>
 			</plugin>
