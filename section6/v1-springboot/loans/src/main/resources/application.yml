@@ -14,3 +14,15 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+build:
+  version: "1.0"
+
+loans:
+  message: "Welcome to EazyBank loans related Prod APIs "
+  contactDetails:
+    name: "Soloveva Marina - Team Lead"
+    email: "marina@eazybank.com"
+  onCallSupport:
+    - (555) 111-565667
+    - (555) 111-657567
