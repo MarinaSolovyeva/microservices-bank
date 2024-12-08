@@ -1,0 +1,11 @@
+build:
+  version: "2.0"
+
+cards:
+  message: "Welcome to EazyBank accounts related QA APIs "
+  contactDetails:
+    name: "Smitgh Ray - QA Lead"
+    email: "ray@eazybank.com"
+  onCallSupport:
+    - (555) 444-565667
+    - (555) 444-657567
