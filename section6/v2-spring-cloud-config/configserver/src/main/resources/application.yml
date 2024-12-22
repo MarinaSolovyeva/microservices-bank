@@ -7,7 +7,9 @@ spring:
     config:
       server:
         native:
-          search-locations: "classpath:/config"
+          # native:
+          # search-locations: "classpath:/config"
+          search-locations: "file:///C:/Users/marina/Documents/config"
 
 server:
   port: 8071
