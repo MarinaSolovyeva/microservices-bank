@@ -1,7 +1,7 @@
 build:
   version: "2.0"
 
-cards:
+accounts:
   message: "Welcome to EazyBank cards related QA APIs "
   contactDetails:
     name: "Smitgh Ray - QA Lead"
