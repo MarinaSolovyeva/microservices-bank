@@ -89,7 +89,7 @@
 				<version>3.4.2</version>
 				<configuration>
 					<to>
-						<image>marinass/${project.artifactId}:s6</image>
+						<image>marinass/${project.artifactId}:s8</image>
 					</to>
 				</configuration>
 			</plugin>
