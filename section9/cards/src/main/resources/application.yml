@@ -3,6 +3,8 @@ server:
 spring:
   application:
     name: "cards"
+  profiles:
+    active: "prod"
   datasource:
     url: jdbc:h2:mem:testdb
     driverClassName: org.h2.Driver
@@ -18,17 +20,31 @@ spring:
     show-sql: true
   config:
     import: "optional:configserver:http://localhost:8071/"
+
 management:
   endpoints:
     web:
       exposure:
         include: "*"
-  info:
-    env:
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
       enabled: true
   endpoint:
     shutdown:
       enabled: true
+    health:
+      probes:
+        enabled: true
+  info:
+    env:
+      enabled: true
+
+endpoints:
+  shutdown:
+    enabled: true
+
 eureka:
   instance:
     preferIpAddress: true
@@ -38,13 +54,14 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8070/eureka/
 
-endpoints:
-  shutdown:
-    enabled: true
-
-# for eureka dashboard
 info:
   app:
     name: "cards"
     description: "Eazy Bank Cards Application"
-    version: "1.0"
+    version: "1.0.0"
+
+logging:
+  level:
+    com:
+      solovieva:
+        cards: DEBUG

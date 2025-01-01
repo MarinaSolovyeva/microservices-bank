@@ -1,4 +1,4 @@
-package com.eazybytes.loans.dto;
+package com.solovieva.loans.dto;
 
 import lombok.Getter;
 import lombok.Setter;

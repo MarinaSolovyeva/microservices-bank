@@ -1,8 +1,8 @@
 package com.solovieva.loans.controller;
 
-import com.eazybytes.loans.dto.LoansContactInfoDto;
 import com.solovieva.loans.constants.LoansConstants;
 import com.solovieva.loans.dto.ErrorResponseDto;
+import com.solovieva.loans.dto.LoansContactInfoDto;
 import com.solovieva.loans.dto.LoansDto;
 import com.solovieva.loans.dto.ResponseDto;
 import com.solovieva.loans.service.ILoansService;
@@ -14,7 +14,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -25,7 +26,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * @author Marina S
+ * @author Eazy Bytes
  */
 
 @Tag(
@@ -37,19 +38,22 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 public class LoansController {
 
+    private static final Logger logger = LoggerFactory.getLogger(LoansController.class);
+
     private ILoansService iLoansService;
 
-    private LoansContactInfoDto loansContactInfoDto;
+    public LoansController(ILoansService iLoansService) {
+        this.iLoansService = iLoansService;
+    }
+
     @Value("${build.version}")
     private String buildVersion;
 
     @Autowired
     private Environment environment;
 
-    public LoansController(ILoansService iLoansService, LoansContactInfoDto loansContactInfoDto) {
-        this.iLoansService = iLoansService;
-        this.loansContactInfoDto = loansContactInfoDto;
-    }
+    @Autowired
+    private LoansContactInfoDto loansContactInfoDto;
 
     @Operation(
             summary = "Create Loan REST API",
@@ -98,9 +102,11 @@ public class LoansController {
     }
     )
     @GetMapping("/fetch")
-    public ResponseEntity<LoansDto> fetchLoanDetails(@RequestParam
-                                                     @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits")
-                                                     String mobileNumber) {
+    public ResponseEntity<LoansDto> fetchLoanDetails(@RequestHeader("eazybank-correlation-id") String correlationId,
+                                                                             @RequestParam
+                                                               @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
+                                                               String mobileNumber) {
+        logger.debug("eazyBank-correlation-id found: {} ", correlationId);
         LoansDto loansDto = iLoansService.fetchLoan(mobileNumber);
         return ResponseEntity.status(HttpStatus.OK).body(loansDto);
     }
@@ -125,7 +131,7 @@ public class LoansController {
                             schema = @Schema(implementation = ErrorResponseDto.class)
                     )
             )
-    }
+        }
     )
     @PutMapping("/update")
     public ResponseEntity<ResponseDto> updateLoanDetails(@Valid @RequestBody LoansDto loansDto) {
@@ -179,6 +185,24 @@ public class LoansController {
         }
     }
 
+    @Operation(
+            summary = "Get Build information",
+            description = "Get Build information that is deployed into cards microservice"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "HTTP Status OK"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "HTTP Status Internal Server Error",
+                    content = @Content(
+                            schema = @Schema(implementation = com.solovieva.loans.dto.ErrorResponseDto.class)
+                    )
+            )
+    }
+    )
     @GetMapping("/build-info")
     public ResponseEntity<String> getBuildInfo() {
         return ResponseEntity
@@ -187,8 +211,8 @@ public class LoansController {
     }
 
     @Operation(
-            summary = "Get Java Version information",
-            description = "Java version information that is deployed into accounts microservice"
+            summary = "Get Java version",
+            description = "Get Java versions details that is installed into cards microservice"
     )
     @ApiResponses({
             @ApiResponse(

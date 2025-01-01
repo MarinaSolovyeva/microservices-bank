@@ -7,8 +7,8 @@ spring:
     gateway:
       discovery:
         locator:
-          enabled: true
-#          lowerCaseServiceId: true
+          enabled: false
+          lowerCaseServiceId: true
 
 
 management:

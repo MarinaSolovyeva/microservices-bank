@@ -1,6 +1,6 @@
 package com.solovieva.loans;
 
-import com.eazybytes.loans.dto.LoansContactInfoDto;
+import com.solovieva.loans.dto.LoansContactInfoDto;
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;
