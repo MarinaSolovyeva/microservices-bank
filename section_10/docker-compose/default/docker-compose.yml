@@ -1,6 +1,6 @@
 services:
   configserver:
-    image: "marinass/configserver:s9"
+    image: "marinass/configserver:s10"
     container_name: configserver-ms
     ports:
       - "8071:8071"
@@ -15,7 +15,7 @@ services:
       service: microservice-base-config
 
   eurekaserver:
-    image: "marinass/eurekaserver:s9"
+    image: "marinass/eurekaserver:s10"
     container_name: eurekaserver-ms
     ports:
       - "8070:8070"
@@ -35,7 +35,7 @@ services:
       SPRING_APPLICATION_NAME: "eurekaserver"
 
   accounts:
-    image: "marinass/accounts:s9"
+    image: "marinass/accounts:s10"
     container_name: accounts-ms
     ports:
       - "8080:8080"
@@ -57,7 +57,7 @@ services:
       service: microservice-eureka-config
 
   loans:
-    image: "marinass/loans:s9"
+    image: "marinass/loans:s10"
     container_name: loans-ms
     ports:
       - "8090:8090"
@@ -79,7 +79,7 @@ services:
       service: microservice-eureka-config
 
   cards:
-    image: "marinass/cards:s9"
+    image: "marinass/cards:s10"
     container_name: cards-ms
     ports:
       - "9000:9000"
@@ -101,7 +101,7 @@ services:
       service: microservice-eureka-config
 
   gatewayserver:
-    image: "marinass/gatewayserver:s9"
+    image: "marinass/gatewayserver:s10"
     container_name: gatewayserver-ms
     ports:
       - "8072:8072"
