@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: "gatewayserver"
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lowerCaseServiceId: true
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 15s
+  data:
+    redis:
+      connect-timeout: 2s
+      host: localhost
+      port: 6379
+      timeout: 1s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    gateway:
+      enabled: true
+  info:
+    env:
+      enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+info:
+  app:
+    name: "gatewayserver"
+    description: "Eazy Bank Gateway Server Application"
+    version: "1.0.0"
+
+logging:
+  level:
+    com:
+      solovieva:
+        gatewayserver: DEBUG
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+#      after 10 request app will take the decision:continue close status or move to the open status
+      slidingWindowSize: 10
+#     number of test calls in half_open
+      permittedNumberOfCallsInHalfOpenState: 2
+#      if 50% of requests is failed, move status to close
+      failureRateThreshold: 50
+#      app will wait 10 sec to allow the partial traffic
+      waitDurationInOpenState: 10000
+
