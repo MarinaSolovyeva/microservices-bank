@@ -4,8 +4,8 @@ metadata:
   name: eazybank-configmap
 data:
   SPRING_PROFILES_ACTIVE: prod
-  SPRING_CONFIG_IMPORT: 'configserver:http://configserver:8071/'
-  EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: 'http://eurekaserver:8070/eureka/'
+  SPRING_CONFIG_IMPORT: "configserver:http://configserver:8071/"
+  EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8070/eureka/"
   CONFIGSERVER_APPLICATION_NAME: configserver
   EUREKA_APPLICATION_NAME: eurekaserver
   ACCOUNTS_APPLICATION_NAME: accounts
@@ -14,4 +14,4 @@ data:
   GATEWAY_APPLICATION_NAME: gatewayserver
   KEYCLOAK_ADMIN: admin
   KEYCLOAK_ADMIN_PASSWORD: admin
-  SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK-SET-URI: 'http://keycloak:7080/realms/master/protocol/openid-connect/certs'
+  SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK-SET-URI: "http://keycloak:7080/realms/master/protocol/openid-connect/certs"

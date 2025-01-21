@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: gatewayserver
-          image: marinass/gatewayserver:s14
+          image: marinass/gatewayserver:s12
           ports:
             - containerPort: 8072
           env:

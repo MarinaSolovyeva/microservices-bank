@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: eurekaserver
-          image: marinass/eurekaserver:s14
+          image: marinass/eurekaserver:s12
           ports:
             - containerPort: 8070
           env:

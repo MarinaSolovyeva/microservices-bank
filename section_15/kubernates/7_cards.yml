@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: cards
-          image: marinass/cards:s14
+          image: marinass/cards:s12
           ports:
             - containerPort: 9000
           env:

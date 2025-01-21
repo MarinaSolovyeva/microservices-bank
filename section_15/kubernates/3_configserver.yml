@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: configserver
-          image: marinass/configserver:s14
+          image: marinass/configserver:s12
           ports:
             - containerPort: 8071
 ---

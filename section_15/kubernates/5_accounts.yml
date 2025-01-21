@@ -5,7 +5,7 @@ metadata:
   labels:
     app: accounts
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: accounts
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: accounts
-          image: marinass/accounts:s14
+          image: marinass/accounts:s12
           ports:
             - containerPort: 8080
           env:
